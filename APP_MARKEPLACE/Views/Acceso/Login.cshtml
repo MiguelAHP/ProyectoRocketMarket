@@ -1,0 +1,35 @@
+﻿
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_LayoutLogin.cshtml";
+}
+
+<head>
+    @Styles.Render("~/Content/CSS003")
+</head>
+
+<div class="contenedor">
+
+
+    <aside class="aside">
+        <!--CONTENEDOR-->
+
+        <form action="">
+            <div class="row">
+                <h3>LOGIN</h3>
+                <div class="col">
+                    <input class="t1" type="text" name="" placeholder="name">
+                    <input class="t1" type="password" name="" placeholder="password">
+                    <input class="btnLogin" type="submit" value="Entrar">
+
+                    <button class="btnFacebook" type="submit" value="">@*<span class="icon-facebook"></span>*@ @Html.ActionLink("Redes Sociales", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" }) </button>
+                    @*<button class="btnGoogle" type="submit" value=""><span class="icon-google-plus"></span>Google</button>*@
+                </div>
+            </div>
+        </form>
+
+    </aside><!--FIN DEL CONTENEDOR-->
+
+
+
+</div>

@@ -1,0 +1,49 @@
+﻿@model APP_MARKEPLACE.Entity.Afiliado
+
+@{
+    ViewBag.Title = "Registrar_afiliado";
+    Layout = "~/Views/Shared/_LayoutLogin.cshtml";
+}
+<head>
+    @Styles.Render("~/Content/CSS005")
+</head>
+<aside class="aside">
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        <div class="row">
+            <h2>Bienvenido a Rocket Market</h2>
+            <div class="col">
+
+                @Html.EditorFor(model => model.nombres, new { htmlAttributes = new { @class = "t1", placeholder = "Nombre usuario", type = "text" } })
+
+                @Html.EditorFor(model => model.apellidos, new { htmlAttributes = new { @class = "t1", placeholder = "Apellidos", type = "text" } })
+
+                @Html.EditorFor(model => model.email, new { htmlAttributes = new { @class = "t1", placeholder = "Email", type = "email" } })
+
+                @Html.EditorFor(model => model.empresa, new { htmlAttributes = new { @class = "t1", placeholder = "Nombre de la empresa", type = "text" } })
+
+                @Html.EditorFor(model => model.direccion, new { htmlAttributes = new { @class = "t1", placeholder = "Direccion", type = "text" } })
+
+                @Html.DropDownList("idpais", (SelectList)ViewBag.pais, new { @class = "t1", placeholder = "Pais" })
+
+                @Html.DropDownList("idprovincia", (SelectList)ViewBag.provincia, new { @class = "t1", placeholder = "Provincia" })
+
+                @Html.DropDownList("iddistrito", (SelectList)ViewBag.distrito, new { @class = "t1", placeholder = "Distrito" } )
+
+                @Html.DropDownList("idtipo", (SelectList)ViewBag.tipoEmpresa, new { @class = "t1", placeholder = "Tipo de empresa" } )
+
+                @Html.EditorFor(model => model.nroRuc, new { htmlAttributes = new { @class = "t1", placeholder = "Nro Ruc", type = "text" } })
+
+                @Html.EditorFor(model => model.telefono, new { htmlAttributes = new { @class = "t1", placeholder = "Telefono", type = "text" } })
+
+                @Html.EditorFor(model => model.contraseña, new { htmlAttributes = new { @class = "t1", placeholder = "Contraseña", type = "password" } })
+
+                @Html.EditorFor(model => model.confir_contraseña, new { htmlAttributes = new { @class = "t1", placeholder = "Confirmar contraseña", type = "password" } })
+
+                <input type="submit" value="Create" class="btnRegistrar" />
+
+            </div>
+        </div>
+    }
+</aside>

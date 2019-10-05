@@ -1,0 +1,469 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="RocketMarketsModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="afiliado">
+          <Key>
+            <PropertyRef Name="codigo" />
+          </Key>
+          <Property Name="codigo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombres" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="apellidos" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="email" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="empresa" Type="varchar" MaxLength="70" Nullable="false" />
+          <Property Name="direccion" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="idpais" Type="int" Nullable="false" />
+          <Property Name="idprovincia" Type="int" Nullable="false" />
+          <Property Name="iddistrito" Type="int" Nullable="false" />
+          <Property Name="idtipo" Type="int" Nullable="false" />
+          <Property Name="Nro_ruc" Type="int" Nullable="false" />
+          <Property Name="telefono" Type="int" />
+          <Property Name="contraseña" Type="varchar" MaxLength="20" />
+          <Property Name="confir_contraseña" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="distrito">
+          <Key>
+            <PropertyRef Name="iddistrito" />
+          </Key>
+          <Property Name="iddistrito" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="45" Nullable="false" />
+        </EntityType>
+        <EntityType Name="pais">
+          <Key>
+            <PropertyRef Name="idpais" />
+          </Key>
+          <Property Name="idpais" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="descripcion" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="provincia">
+          <Key>
+            <PropertyRef Name="idprovincia" />
+          </Key>
+          <Property Name="idprovincia" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="45" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sexo">
+          <Key>
+            <PropertyRef Name="idsexo" />
+          </Key>
+          <Property Name="idsexo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="descripcion" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="tipo_empresa">
+          <Key>
+            <PropertyRef Name="idtipo" />
+          </Key>
+          <Property Name="idtipo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="descripcion" Type="varchar" MaxLength="45" Nullable="false" />
+        </EntityType>
+        <EntityType Name="usuario">
+          <Key>
+            <PropertyRef Name="codigo" />
+          </Key>
+          <Property Name="codigo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombres" Type="varchar" MaxLength="50" />
+          <Property Name="idpais" Type="int" />
+          <Property Name="idsexo" Type="int" />
+          <Property Name="email" Type="varchar" MaxLength="100" />
+          <Property Name="contraseña" Type="varchar" MaxLength="20" />
+          <Property Name="confir_contraseña" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <Association Name="FK__afiliado__iddist__403A8C7D">
+          <End Role="distrito" Type="Self.distrito" Multiplicity="1" />
+          <End Role="afiliado" Type="Self.afiliado" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="distrito">
+              <PropertyRef Name="iddistrito" />
+            </Principal>
+            <Dependent Role="afiliado">
+              <PropertyRef Name="iddistrito" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__afiliado__idpais__3E52440B">
+          <End Role="pais" Type="Self.pais" Multiplicity="1" />
+          <End Role="afiliado" Type="Self.afiliado" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="pais">
+              <PropertyRef Name="idpais" />
+            </Principal>
+            <Dependent Role="afiliado">
+              <PropertyRef Name="idpais" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__afiliado__idprov__3F466844">
+          <End Role="provincia" Type="Self.provincia" Multiplicity="1" />
+          <End Role="afiliado" Type="Self.afiliado" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="provincia">
+              <PropertyRef Name="idprovincia" />
+            </Principal>
+            <Dependent Role="afiliado">
+              <PropertyRef Name="idprovincia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__afiliado__idtipo__412EB0B6">
+          <End Role="tipo_empresa" Type="Self.tipo_empresa" Multiplicity="1" />
+          <End Role="afiliado" Type="Self.afiliado" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tipo_empresa">
+              <PropertyRef Name="idtipo" />
+            </Principal>
+            <Dependent Role="afiliado">
+              <PropertyRef Name="idtipo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__usuario__idpais__32E0915F">
+          <End Role="pais" Type="Self.pais" Multiplicity="0..1" />
+          <End Role="usuario" Type="Self.usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="pais">
+              <PropertyRef Name="idpais" />
+            </Principal>
+            <Dependent Role="usuario">
+              <PropertyRef Name="idpais" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__usuario__idsexo__33D4B598">
+          <End Role="sexo" Type="Self.sexo" Multiplicity="0..1" />
+          <End Role="usuario" Type="Self.usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="sexo">
+              <PropertyRef Name="idsexo" />
+            </Principal>
+            <Dependent Role="usuario">
+              <PropertyRef Name="idsexo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="RocketMarketsModelStoreContainer">
+          <EntitySet Name="afiliado" EntityType="Self.afiliado" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="distrito" EntityType="Self.distrito" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="pais" EntityType="Self.pais" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="provincia" EntityType="Self.provincia" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sexo" EntityType="Self.sexo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tipo_empresa" EntityType="Self.tipo_empresa" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="usuario" EntityType="Self.usuario" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__afiliado__iddist__403A8C7D" Association="Self.FK__afiliado__iddist__403A8C7D">
+            <End Role="distrito" EntitySet="distrito" />
+            <End Role="afiliado" EntitySet="afiliado" />
+          </AssociationSet>
+          <AssociationSet Name="FK__afiliado__idpais__3E52440B" Association="Self.FK__afiliado__idpais__3E52440B">
+            <End Role="pais" EntitySet="pais" />
+            <End Role="afiliado" EntitySet="afiliado" />
+          </AssociationSet>
+          <AssociationSet Name="FK__afiliado__idprov__3F466844" Association="Self.FK__afiliado__idprov__3F466844">
+            <End Role="provincia" EntitySet="provincia" />
+            <End Role="afiliado" EntitySet="afiliado" />
+          </AssociationSet>
+          <AssociationSet Name="FK__afiliado__idtipo__412EB0B6" Association="Self.FK__afiliado__idtipo__412EB0B6">
+            <End Role="tipo_empresa" EntitySet="tipo_empresa" />
+            <End Role="afiliado" EntitySet="afiliado" />
+          </AssociationSet>
+          <AssociationSet Name="FK__usuario__idpais__32E0915F" Association="Self.FK__usuario__idpais__32E0915F">
+            <End Role="pais" EntitySet="pais" />
+            <End Role="usuario" EntitySet="usuario" />
+          </AssociationSet>
+          <AssociationSet Name="FK__usuario__idsexo__33D4B598" Association="Self.FK__usuario__idsexo__33D4B598">
+            <End Role="sexo" EntitySet="sexo" />
+            <End Role="usuario" EntitySet="usuario" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="RocketMarketsModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="afiliado">
+          <Key>
+            <PropertyRef Name="codigo" />
+          </Key>
+          <Property Name="codigo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombres" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="apellidos" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="email" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="empresa" Type="String" MaxLength="70" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="direccion" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="idpais" Type="Int32" Nullable="false" />
+          <Property Name="idprovincia" Type="Int32" Nullable="false" />
+          <Property Name="iddistrito" Type="Int32" Nullable="false" />
+          <Property Name="idtipo" Type="Int32" Nullable="false" />
+          <Property Name="Nro_ruc" Type="Int32" Nullable="false" />
+          <Property Name="telefono" Type="Int32" />
+          <Property Name="contraseña" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="confir_contraseña" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="distrito" Relationship="Self.FK__afiliado__iddist__403A8C7D" FromRole="afiliado" ToRole="distrito" />
+          <NavigationProperty Name="pais" Relationship="Self.FK__afiliado__idpais__3E52440B" FromRole="afiliado" ToRole="pais" />
+          <NavigationProperty Name="provincia" Relationship="Self.FK__afiliado__idprov__3F466844" FromRole="afiliado" ToRole="provincia" />
+          <NavigationProperty Name="tipo_empresa" Relationship="Self.FK__afiliado__idtipo__412EB0B6" FromRole="afiliado" ToRole="tipo_empresa" />
+        </EntityType>
+        <EntityType Name="distrito">
+          <Key>
+            <PropertyRef Name="iddistrito" />
+          </Key>
+          <Property Name="iddistrito" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="afiliado" Relationship="Self.FK__afiliado__iddist__403A8C7D" FromRole="distrito" ToRole="afiliado" />
+        </EntityType>
+        <EntityType Name="pais">
+          <Key>
+            <PropertyRef Name="idpais" />
+          </Key>
+          <Property Name="idpais" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="descripcion" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="afiliado" Relationship="Self.FK__afiliado__idpais__3E52440B" FromRole="pais" ToRole="afiliado" />
+          <NavigationProperty Name="usuario" Relationship="Self.FK__usuario__idpais__32E0915F" FromRole="pais" ToRole="usuario" />
+        </EntityType>
+        <EntityType Name="provincia">
+          <Key>
+            <PropertyRef Name="idprovincia" />
+          </Key>
+          <Property Name="idprovincia" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="afiliado" Relationship="Self.FK__afiliado__idprov__3F466844" FromRole="provincia" ToRole="afiliado" />
+        </EntityType>
+        <EntityType Name="sexo">
+          <Key>
+            <PropertyRef Name="idsexo" />
+          </Key>
+          <Property Name="idsexo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="descripcion" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="usuario" Relationship="Self.FK__usuario__idsexo__33D4B598" FromRole="sexo" ToRole="usuario" />
+        </EntityType>
+        <EntityType Name="tipo_empresa">
+          <Key>
+            <PropertyRef Name="idtipo" />
+          </Key>
+          <Property Name="idtipo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="descripcion" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="afiliado" Relationship="Self.FK__afiliado__idtipo__412EB0B6" FromRole="tipo_empresa" ToRole="afiliado" />
+        </EntityType>
+        <EntityType Name="usuario">
+          <Key>
+            <PropertyRef Name="codigo" />
+          </Key>
+          <Property Name="codigo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombres" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="idpais" Type="Int32" />
+          <Property Name="idsexo" Type="Int32" />
+          <Property Name="email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="contraseña" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="confir_contraseña" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="pais" Relationship="Self.FK__usuario__idpais__32E0915F" FromRole="usuario" ToRole="pais" />
+          <NavigationProperty Name="sexo" Relationship="Self.FK__usuario__idsexo__33D4B598" FromRole="usuario" ToRole="sexo" />
+        </EntityType>
+        <Association Name="FK__afiliado__iddist__403A8C7D">
+          <End Role="distrito" Type="Self.distrito" Multiplicity="1" />
+          <End Role="afiliado" Type="Self.afiliado" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="distrito">
+              <PropertyRef Name="iddistrito" />
+            </Principal>
+            <Dependent Role="afiliado">
+              <PropertyRef Name="iddistrito" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__afiliado__idpais__3E52440B">
+          <End Role="pais" Type="Self.pais" Multiplicity="1" />
+          <End Role="afiliado" Type="Self.afiliado" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="pais">
+              <PropertyRef Name="idpais" />
+            </Principal>
+            <Dependent Role="afiliado">
+              <PropertyRef Name="idpais" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__afiliado__idprov__3F466844">
+          <End Role="provincia" Type="Self.provincia" Multiplicity="1" />
+          <End Role="afiliado" Type="Self.afiliado" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="provincia">
+              <PropertyRef Name="idprovincia" />
+            </Principal>
+            <Dependent Role="afiliado">
+              <PropertyRef Name="idprovincia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__afiliado__idtipo__412EB0B6">
+          <End Role="tipo_empresa" Type="Self.tipo_empresa" Multiplicity="1" />
+          <End Role="afiliado" Type="Self.afiliado" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tipo_empresa">
+              <PropertyRef Name="idtipo" />
+            </Principal>
+            <Dependent Role="afiliado">
+              <PropertyRef Name="idtipo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__usuario__idpais__32E0915F">
+          <End Role="pais" Type="Self.pais" Multiplicity="0..1" />
+          <End Role="usuario" Type="Self.usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="pais">
+              <PropertyRef Name="idpais" />
+            </Principal>
+            <Dependent Role="usuario">
+              <PropertyRef Name="idpais" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__usuario__idsexo__33D4B598">
+          <End Role="sexo" Type="Self.sexo" Multiplicity="0..1" />
+          <End Role="usuario" Type="Self.usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="sexo">
+              <PropertyRef Name="idsexo" />
+            </Principal>
+            <Dependent Role="usuario">
+              <PropertyRef Name="idsexo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="RocketMarketsEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="afiliado" EntityType="Self.afiliado" />
+          <EntitySet Name="distrito" EntityType="Self.distrito" />
+          <EntitySet Name="pais" EntityType="Self.pais" />
+          <EntitySet Name="provincia" EntityType="Self.provincia" />
+          <EntitySet Name="sexo" EntityType="Self.sexo" />
+          <EntitySet Name="tipo_empresa" EntityType="Self.tipo_empresa" />
+          <EntitySet Name="usuario" EntityType="Self.usuario" />
+          <AssociationSet Name="FK__afiliado__iddist__403A8C7D" Association="Self.FK__afiliado__iddist__403A8C7D">
+            <End Role="distrito" EntitySet="distrito" />
+            <End Role="afiliado" EntitySet="afiliado" />
+          </AssociationSet>
+          <AssociationSet Name="FK__afiliado__idpais__3E52440B" Association="Self.FK__afiliado__idpais__3E52440B">
+            <End Role="pais" EntitySet="pais" />
+            <End Role="afiliado" EntitySet="afiliado" />
+          </AssociationSet>
+          <AssociationSet Name="FK__afiliado__idprov__3F466844" Association="Self.FK__afiliado__idprov__3F466844">
+            <End Role="provincia" EntitySet="provincia" />
+            <End Role="afiliado" EntitySet="afiliado" />
+          </AssociationSet>
+          <AssociationSet Name="FK__afiliado__idtipo__412EB0B6" Association="Self.FK__afiliado__idtipo__412EB0B6">
+            <End Role="tipo_empresa" EntitySet="tipo_empresa" />
+            <End Role="afiliado" EntitySet="afiliado" />
+          </AssociationSet>
+          <AssociationSet Name="FK__usuario__idpais__32E0915F" Association="Self.FK__usuario__idpais__32E0915F">
+            <End Role="pais" EntitySet="pais" />
+            <End Role="usuario" EntitySet="usuario" />
+          </AssociationSet>
+          <AssociationSet Name="FK__usuario__idsexo__33D4B598" Association="Self.FK__usuario__idsexo__33D4B598">
+            <End Role="sexo" EntitySet="sexo" />
+            <End Role="usuario" EntitySet="usuario" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="RocketMarketsModelStoreContainer" CdmEntityContainer="RocketMarketsEntities">
+          <EntitySetMapping Name="afiliado">
+            <EntityTypeMapping TypeName="RocketMarketsModel.afiliado">
+              <MappingFragment StoreEntitySet="afiliado">
+                <ScalarProperty Name="codigo" ColumnName="codigo" />
+                <ScalarProperty Name="nombres" ColumnName="nombres" />
+                <ScalarProperty Name="apellidos" ColumnName="apellidos" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="empresa" ColumnName="empresa" />
+                <ScalarProperty Name="direccion" ColumnName="direccion" />
+                <ScalarProperty Name="idpais" ColumnName="idpais" />
+                <ScalarProperty Name="idprovincia" ColumnName="idprovincia" />
+                <ScalarProperty Name="iddistrito" ColumnName="iddistrito" />
+                <ScalarProperty Name="idtipo" ColumnName="idtipo" />
+                <ScalarProperty Name="Nro_ruc" ColumnName="Nro_ruc" />
+                <ScalarProperty Name="telefono" ColumnName="telefono" />
+                <ScalarProperty Name="contraseña" ColumnName="contraseña" />
+                <ScalarProperty Name="confir_contraseña" ColumnName="confir_contraseña" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="distrito">
+            <EntityTypeMapping TypeName="RocketMarketsModel.distrito">
+              <MappingFragment StoreEntitySet="distrito">
+                <ScalarProperty Name="iddistrito" ColumnName="iddistrito" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="pais">
+            <EntityTypeMapping TypeName="RocketMarketsModel.pais">
+              <MappingFragment StoreEntitySet="pais">
+                <ScalarProperty Name="idpais" ColumnName="idpais" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="provincia">
+            <EntityTypeMapping TypeName="RocketMarketsModel.provincia">
+              <MappingFragment StoreEntitySet="provincia">
+                <ScalarProperty Name="idprovincia" ColumnName="idprovincia" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sexo">
+            <EntityTypeMapping TypeName="RocketMarketsModel.sexo">
+              <MappingFragment StoreEntitySet="sexo">
+                <ScalarProperty Name="idsexo" ColumnName="idsexo" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tipo_empresa">
+            <EntityTypeMapping TypeName="RocketMarketsModel.tipo_empresa">
+              <MappingFragment StoreEntitySet="tipo_empresa">
+                <ScalarProperty Name="idtipo" ColumnName="idtipo" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="usuario">
+            <EntityTypeMapping TypeName="RocketMarketsModel.usuario">
+              <MappingFragment StoreEntitySet="usuario">
+                <ScalarProperty Name="codigo" ColumnName="codigo" />
+                <ScalarProperty Name="nombres" ColumnName="nombres" />
+                <ScalarProperty Name="idpais" ColumnName="idpais" />
+                <ScalarProperty Name="idsexo" ColumnName="idsexo" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="contraseña" ColumnName="contraseña" />
+                <ScalarProperty Name="confir_contraseña" ColumnName="confir_contraseña" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

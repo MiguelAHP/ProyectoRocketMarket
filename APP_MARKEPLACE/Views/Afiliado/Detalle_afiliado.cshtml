@@ -1,0 +1,130 @@
+﻿@model APP_MARKEPLACE.Entity.Afiliado
+
+@{
+    ViewBag.Title = "Detalle_afiliado";
+}
+
+<h2>Detalle_afiliado</h2>
+
+<div>
+    <h4>Afiliado</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.codigo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.codigo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.nombres)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nombres)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.apellidos)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.apellidos)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.empresa)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.empresa)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.direccion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.direccion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.idpais)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.idpais)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.idprovincia)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.idprovincia)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.iddistrito)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.iddistrito)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.idtipo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.idtipo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.nroRuc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nroRuc)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.telefono)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.telefono)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.contraseña)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.contraseña)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.confir_contraseña)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.confir_contraseña)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
