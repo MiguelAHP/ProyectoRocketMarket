@@ -62,6 +62,7 @@ namespace APP_MARKEPLACE
             {
                 ClientId = "654749943426-m12hs3maheu7gassiuv457okd5jl2fuv.apps.googleusercontent.com",
                 ClientSecret = "WN_w2t-E7lgkzYmX922wvt3p"
+            
             });
         }
     }
